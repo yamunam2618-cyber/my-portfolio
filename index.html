@@ -1,27 +1,80 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Yamuna's Portfolio</title>
+<title>Yamuna | Portfolio</title>
+
 <style>
+
 body{
-font-family: Arial;
-background-color:#f4f4f4;
-margin:40px;
+font-family: Arial, sans-serif;
+margin:0;
+background: linear-gradient(135deg,#1f2937,#4f46e5);
+color:white;
+}
+
+nav{
+background:#111827;
+padding:15px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:15px;
+text-decoration:none;
+font-weight:bold;
+}
+
+header{
+text-align:center;
+padding:60px 20px;
+}
+
+header img{
+width:150px;
+border-radius:50%;
+border:4px solid white;
+}
+
+section{
+padding:40px;
 }
 
 .container{
+max-width:900px;
+margin:auto;
+}
+
+.card{
 background:white;
+color:black;
 padding:20px;
+margin:15px 0;
 border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
-h1{
-color:#333;
+.skills span{
+background:#4f46e5;
+color:white;
+padding:8px 12px;
+margin:5px;
+border-radius:5px;
+display:inline-block;
 }
 
-.section{
-margin-top:20px;
+.certificates img{
+width:250px;
+margin:10px;
+border-radius:8px;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#111827;
+margin-top:40px;
 }
 
 </style>
@@ -29,46 +82,141 @@ margin-top:20px;
 
 <body>
 
-<div class="container">
+<nav>
+<a href="#about">About</a>
+<a href="#education">Education</a>
+<a href="#skills">Skills</a>
+<a href="#courses">Courses</a>
+<a href="#certificates">Certificates</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
 
-<h1>Hi, I'm Yamuna 👋</h1>
+<header>
 
-<p>Welcome to my personal website!</p>
+<h1>Yamuna M</h1>
 
-<div class="section">
+<img src="profile.jpg">
+
+<p>Aspiring Tech Enthusiast | Learning Cloud Computing & Web Development</p>
+
+</header>
+
+<section id="about" class="container">
+
 <h2>About Me</h2>
+
+<div class="card">
 <p>
-I am Yamuna, a student passionate about technology and learning new things.
-Currently I am exploring programming, cloud computing and web development.
+Hello! I am Yamuna, a passionate student interested in technology,
+cloud computing and web development. I enjoy learning new
+technologies and building projects to improve my skills.
 </p>
 </div>
 
-<div class="section">
+</section>
+
+<section id="education" class="container">
+
 <h2>Education</h2>
-<ul>
-<li>Pursuing: UG (BCA cloud Computing)</li>
-<li>College: Kristu jayanti University</li>
-</ul>
+
+<div class="card">
+<p><b>Degree:</b> BCA Cloud Computing</p>
+<p><b>College:</b> Kristu jayanti University</p>
+<p><b>Location:</b> Bangalore, India K.Narayanpura ,Kothnur Post</p>
 </div>
 
-<div class="section">
+</section>
+
+<section id="skills" class="container">
+
 <h2>Skills</h2>
+
+<div class="card skills">
+
+<span>HTML</span>
+<span>GitHub</span>
+<span>Cloud Computing</span>
+<span>Problem Solving</span>
+<span>CSS</span>
+<span>Javascript</span>
+<span>C++,Python and C programming</span>
+<span>Excel and powerpoint</span>
+</div>
+
+</section>
+
+<section id="courses" class="container">
+
+<h2>Courses</h2>
+
+<div class="card">
+
 <ul>
-<li>HTML</li>
-<li>GitHub</li>
-<li>Cloud Fundamentals</li>
-<li>Python Programming</li>
-<li>C and C++</li>
-<li>Excel and Powerpoint</li>
+<li>Cloud Computing Fundamentals</li>
+<li>Introduction to Programming</li>
+<li>Web Development Basics</li>
+
 </ul>
+
 </div>
 
-<div class="section">
+</section>
+
+<section id="certificates" class="container">
+
+<h2>Certificates</h2>
+
+<div class="card certificates">
+
+<img src="Aws_certificate1.jpg">
+<img src="Html_certificate2.jpg">
+<img src="CSS_certificate3.jpg">
+<img src="Javascript_certificate4.jpg">
+<img src="Frontendweb_certificate5.jpg">
+<img src="NodesJs_certificate6.jpg">
+<img src="Gitandgithub_certificate7.jpg">
+
+</div>
+
+</section>
+
+<section id="projects" class="container">
+
+<h2>Projects</h2>
+
+<div class="card">
+
+<ul>
+
+<li>Personal Portfolio Website</li>
+<li>Cloud Fundamentals Study Project</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section id="contact" class="container">
+
 <h2>Contact</h2>
-<p>Email: yamuna.m2818@gmail.com</p>
-</div>
+
+<div class="card">
+
+<p>Email: yamuna.m2618@gmail.com</p>
+<p>Number:9980192784
+<p>GitHub: https://github.com/yamuna2618-cyber</p>
 
 </div>
+
+</section>
+
+<footer>
+
+<p>© 2026 Yamuna M</p>
+
+</footer>
 
 </body>
 </html>
