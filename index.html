@@ -1,34 +1,22 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>Yamuna | Portfolio</title>
+
+<title>Yamuna Portfolio</title>
 
 <style>
 
 body{
-font-family: Arial, sans-serif;
 margin:0;
-background: linear-gradient(135deg,#1f2937,#4f46e5);
+font-family:Arial;
 color:white;
-}
-
-nav{
-background:#111827;
-padding:15px;
-text-align:center;
-}
-
-nav a{
-color:white;
-margin:15px;
-text-decoration:none;
-font-weight:bold;
+background: linear-gradient(135deg,#0f172a,#1e3a8a);
+scroll-behavior: smooth;
 }
 
 header{
 text-align:center;
-padding:60px 20px;
+padding:80px;
 }
 
 header img{
@@ -37,80 +25,118 @@ border-radius:50%;
 border:4px solid white;
 }
 
-section{
+h1{
+margin-top:20px;
+}
+
+.buttons a{
+padding:12px 25px;
+margin:10px;
+background:#38bdf8;
+color:black;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.buttons a:hover{
+background:#0ea5e9;
+color:white;
+transform:scale(1.05);
+box-shadow:0 0 15px #38bdf8;
+}
+
+.section{
 padding:40px;
+max-width:900px;
+margin:auto;
+}
+
+.skills span{
+background:#38bdf8;
+color:black;
+padding:8px 14px;
+margin:5px;
+display:inline-block;
+border-radius:6px;
+}
+
+.certificates{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.certificates img{
+width:250px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.4);
+transition:transform 0.3s;
+}
+
+.certificates img:hover{
+transform:scale(1.05);
+}
+
+.contact a{
+display:block;
+color:white;
+margin:10px 0;
+text-decoration:none;
 }
 
 .container{
 max-width:900px;
 margin:auto;
+padding:40px;
 }
 
 .card{
 background:white;
 color:black;
 padding:20px;
-margin:15px 0;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
-
-.skills span{
-background:#4f46e5;
-color:white;
-padding:8px 12px;
-margin:5px;
-border-radius:5px;
-display:inline-block;
-}
-
-.certificates img{
-width:250px;
-margin:10px;
-border-radius:8px;
-}
-
-footer{
-text-align:center;
-padding:20px;
-background:#111827;
-margin-top:40px;
+margin:15px 0;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<nav>
-<a href="#about">About</a>
-<a href="#education">Education</a>
-<a href="#skills">Skills</a>
-<a href="#courses">Courses</a>
-<a href="#certificates">Certificates</a>
-<a href="#projects">Projects</a>
-<a href="#contact">Contact</a>
-</nav>
-
 <header>
+
+<img src="profile.jpg">
 
 <h1>Yamuna M</h1>
 
-<img src="profile.pdf">
+<p>Aspiring Tech Enthusiast | Learning Cloud & Web Development</p>
 
-<p>Aspiring Tech Enthusiast | Learning Cloud Computing & Web Development</p>
+<div class="buttons">
+
+<a href="#contact">Contact Me</a>
+
+<a href="#certificates">View Certificates</a>
+
+</div>
 
 </header>
-
+  
 <section id="about" class="container">
 
 <h2>About Me</h2>
 
 <div class="card">
 <p>
-Hello! I am Yamuna, a passionate student interested in technology,
-cloud computing and web development. I enjoy learning new
-technologies and building projects to improve my skills.
+Hello! I am <b>Yamuna M</b>, a passionate student from Bangalore who is
+interested in technology and continuously learning new skills in the
+field of <b>Cloud Computing and Web Development</b>. I enjoy exploring
+modern technologies and building simple projects to improve my technical
+knowledge. I am currently focusing on developing my skills in HTML,
+GitHub and cloud technologies while working towards building a strong
+career in the tech industry.
 </p>
 </div>
 
@@ -121,14 +147,20 @@ technologies and building projects to improve my skills.
 <h2>Education</h2>
 
 <div class="card">
-<p><b>Degree:</b> BCA Cloud Computing</p>
+<p><b>Degree:</b> BCA in Cloud Computing</p>
 <p><b>College:</b> Kristu jayanti University</p>
-<p><b>Location:</b> Bangalore, India K.Narayanpura ,Kothnur Post</p>
+<p><b>Location:</b> Bangalore, Karnataka, India</p>
+<p>
+Currently pursuing my undergraduate degree with a strong interest in
+computer technology, programming and cloud computing. During my
+academic journey I am also focusing on improving practical skills by
+learning web development and working on personal projects.
+</p>
 </div>
 
 </section>
 
-<section id="skills" class="container">
+<div class="section">
 
 <h2>Skills</h2>
 
@@ -137,86 +169,73 @@ technologies and building projects to improve my skills.
 <span>HTML</span>
 <span>GitHub</span>
 <span>Cloud Computing</span>
-<span>Problem Solving</span>
-<span>CSS</span>
+<span>Python</span>
+<span>CSS3</span>
 <span>Javascript</span>
-<span>C++,Python and C programming</span>
 <span>Excel and powerpoint</span>
-</div>
-
-</section>
-
-<section id="courses" class="container">
-
-<h2>Courses</h2>
-
-<div class="card">
-
-<ul>
-<li>Cloud Computing Fundamentals</li>
-<li>Introduction to Programming</li>
-<li>Web Development Basics</li>
-
-</ul>
+<span>C and C++</span>
 
 </div>
 
-</section>
+</div>
 
-<section id="certificates" class="container">
+<div class="section" id="certificates">
 
 <h2>Certificates</h2>
 
-<div class="card certificates">
+<div class="certificates">
 
-<img src="Aws_certificate1.pdf">
-<img src="Html_certificate2.pdf">
-<img src="CSS_certificate3.pdf">
-<img src="Javascript_certificate4.pdf">
-<img src="Frontendweb_certificate5.pdf">
-<img src="NodesJs_certificate6.pdf">
-<img src="Gitandgithub_certificate7.pdf">
+<a href="HTML_certificate2.jpeg" target="_blank">
+<img src="HTML_certificate2.jpeg">
+</a>
+
+<a href="aws_certificate1.jpeg" target="_blank">
+<img src="aws_certificate1.jpeg">
+</a>
+
+<a href="CSS_certificate3.jpeg" target="_blank">
+<img src="CSS_certificate3.jpeg">
+</a>
+
+<a href="Javascript_certificate4.jpeg" target="_blank">
+<img src="Javascript_certificate4.jpeg">
+</a>
+
+<a href="Frontendweb_certificate5.jpeg" target="_blank">
+<img src="Frontendweb_certificate5.jpeg">
+</a>
+
+<a href="NodesJs_certificate6.jpeg" target="_blank">
+<img src="NodesJs_certificate6.jpeg">
+</a>
+
+<a href="Gitandgithub_certificate1.jpeg" target="_blank">
+<img src="Gitandgithub_certificate1.jpeg">
+</a>
+</div>
 
 </div>
 
-</section>
-
-<section id="projects" class="container">
-
-<h2>Projects</h2>
-
-<div class="card">
-
-<ul>
-
-<li>Personal Portfolio Website</li>
-<li>Cloud Fundamentals Study Project</li>
-
-</ul>
-
-</div>
-
-</section>
-
-<section id="contact" class="container">
+<div class="section" id="contact">
 
 <h2>Contact</h2>
 
-<div class="card">
+<div class="contact">
 
-<p>Email: yamuna.m2618@gmail.com</p>
-<p>Number:9980192784
-<p>GitHub: https://github.com/yamuna2618-cyber</p>
+<a href="mailto:yamuna.m2618@gmail.com">📧 Email</a>
+
+<a href="https://linkedin.com/in/yamuna.m">LinkedIn</a>
+
+<a href="https://github.com/yamuna2618-cyber">GitHub</a>
 
 </div>
 
-</section>
+</div>
 
-<footer>
-
-<p>© 2026 Yamuna M</p>
-
+<footer style="text-align:center;padding:20px;background:#0f172a;margin-top:40px;">
+© 2026 Yamuna M
 </footer>
-
+  
 </body>
 </html>
+
