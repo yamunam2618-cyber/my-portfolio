@@ -10,12 +10,10 @@ body {
   margin:0;
   font-family: Arial, sans-serif;
   color: white;
-  background: linear-gradient(-45deg, #0f172a, #1e3a8a, #4f46e5, #3b82f6);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  background: linear-gradient(135deg, #1e1b4b, #312e81, #4338ca);
   scroll-behavior: smooth;
 }
-
+  
 @keyframes gradientBG {
   0% {background-position: 0% 50%;}
   50% {background-position: 100% 50%;}
@@ -261,21 +259,36 @@ learning web development and working on personal projects.
 </div>
 
 </div>
+<section id="feedback" class="contact-form">
+<h3>Send Me Feedback</h3>
+<form id="feedbackForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="feedback" placeholder="Your Feedback" rows="5" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+  </section>
 
-  <section id="feedback" class="container">
-  <h2>Feedback</h2>
-  <div class="card">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScGVYFdtup0GA_Lzuvnlcspn_YwdFuLpUmgrIkcrlr0g4EieQ/viewform?embedded=true" 
-            width="100%" height="700px" frameborder="0" marginheight="0" marginwidth="0">
-      Loading…
-    </iframe>
-  </div>
-</section>
+  <footer>
+    © 2026 Yamuna M
+  </footer>
 
-<footer style="text-align:center;padding:20px;background:#0f172a;margin-top:40px;">
-© 2026 Yamuna M
-</footer>
-  
+  <script>
+    // Form interactivity
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent default page reload
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const feedback = document.getElementById('feedback').value.trim();
+
+      if(name && email && feedback){
+        alert(`Thank you ${name}! Your feedback has been submitted.`);
+        this.reset(); // Reset form
+      } else {
+        alert("Please fill in all fields.");
+      }
+    });
+  </script>
+
 </body>
 </html>
-
