@@ -114,20 +114,6 @@ padding:40px;
   transform: scale(1.02);
 }
 
-  /* Feedback section styling */
-#feedback h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-#feedback .card {
-  padding: 30px;       /* extra space inside the card */
-  border-radius: 20px; /* more rounded corners */
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-}
-  
 </style>
 
 </head>
@@ -274,21 +260,40 @@ learning web development and working on personal projects.
   </footer>
 
   <script>
-    // Form interactivity
-    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevent default page reload
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const feedback = document.getElementById('feedback').value.trim();
+document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
 
-      if(name && email && feedback){
-        alert(`Thank you ${name}! Your feedback has been submitted.`);
-        this.reset(); // Reset form
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const feedback = document.getElementById('feedback').value.trim();
+
+  if(name && email && feedback){
+    try {
+      const response = await fetch('http://localhost:3000/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, feedback })
+      });
+
+      const data = await response.json();
+
+      if(response.ok){
+        alert(data.message);
+        this.reset();
       } else {
-        alert("Please fill in all fields.");
+        alert('Error: ' + data.message);
       }
-    });
-  </script>
 
+    } catch(err){
+      console.error(err);
+      alert('Could not connect to server');
+    }
+  } else {
+    alert('Please fill in all fields');
+  }
+});
+</script>
 </body>
 </html>
