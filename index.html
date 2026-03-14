@@ -10,7 +10,7 @@ body {
   margin:0;
   font-family: Arial, sans-serif;
   color: white;
-  background: linear-gradient(135deg, #1e1b4b, #312e81, #4338ca);
+  background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
   scroll-behavior: smooth;
 }
   
@@ -114,6 +114,48 @@ padding:40px;
   transform: scale(1.02);
 }
 
+.contact-form{
+max-width:600px;
+margin:50px auto;
+text-align:center;
+}
+
+.contact-form form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+font-size:14px;
+outline:none;
+}
+
+.contact-form textarea{
+resize:none;
+}
+
+.contact-form button{
+padding:12px;
+border:none;
+border-radius:8px;
+background:#38bdf8;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.contact-form button:hover{
+background:#0ea5e9;
+color:white;
+transform:scale(1.05);
+}
+  
 </style>
 
 </head>
@@ -250,7 +292,7 @@ learning web development and working on personal projects.
 <form id="feedbackForm">
         <input type="text" id="name" placeholder="Your Name" required>
         <input type="email" id="email" placeholder="Your Email" required>
-        <textarea id="feedback" placeholder="Your Feedback" rows="5" required></textarea>
+        <textarea id="message" placeholder="Your Feedback" rows="5" required></textarea>
         <button type="submit">Submit</button>
       </form>
   </section>
@@ -265,7 +307,7 @@ document.getElementById('feedbackForm').addEventListener('submit', async functio
 
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
-  const feedback = document.getElementById('feedback').value.trim();
+  const feedback = document.getElementById('message').value.trim();
 
   if(name && email && feedback){
     try {
