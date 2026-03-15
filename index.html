@@ -66,7 +66,6 @@
   </div>
 </header>
 
-<!-- About Section -->
 <section id="about" class="container">
   <h2>About Me</h2>
   <div class="card">
@@ -82,7 +81,6 @@
   </div>
 </section>
 
-<!-- Education Section -->
 <section id="education" class="container">
   <h2>Education</h2>
   <div class="card">
@@ -98,7 +96,6 @@
   </div>
 </section>
 
-<!-- Skills Section -->
 <div class="section">
   <h2>Skills</h2>
   <div class="card skills">
@@ -113,7 +110,6 @@
   </div>
 </div>
 
-<!-- Certificates Section -->
 <div class="section" id="certificates">
   <h2>Certificates</h2>
   <div class="certificates">
@@ -127,7 +123,6 @@
   </div>
 </div>
 
-<!-- Contact Section -->
 <div class="section" id="contact">
   <h2>Contact</h2>
   <div class="contact">
@@ -137,14 +132,13 @@
   </div>
 </div>
 
-<!-- Feedback Section -->
 <section id="feedback" class="container">
   <h3>Send Me Feedback</h3>
   <div class="card contact-form">
     <form id="feedbackForm">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" placeholder="Your Feedback" rows="5" required></textarea>
+      <input type="text" id="Name" placeholder="Your Name" required>
+      <input type="email" id="Email" placeholder="Your Email" required>
+      <textarea id="Message" placeholder="Your Feedback" rows="5" required></textarea>
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -152,31 +146,27 @@
 
 <footer>© 2026 Yamuna M</footer>
 
-<!-- Supabase JS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
-
 <script>
-  // Initialize Supabase
   const SUPABASE_URL = "https://qkkcpryrutnrcuibckaq.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_55DfnVySZl03gUmgnKzhSA_uvR5HRdo"; // publishable key
+  const SUPABASE_KEY = "sb_publishable_55DfnVySZl03gUmgnKzhSA_uvR5HRdo";
   const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  // Feedback form submit
   document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
     e.preventDefault();
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
+    const Name = document.getElementById("Name").value.trim();
+    const Email = document.getElementById("Email").value.trim();
+    const Message = document.getElementById("Message").value.trim(); // ✅ fixed typo
 
-    if (!name || !email || !message) {
+    if (!Name || !Email || !Message) {
       alert("Please fill in all fields");
       return;
     }
 
     const { data, error } = await supabase
-      .from("feedback") // Make sure your table name is exactly "feedback"
-      .insert([{ Name: name, Email: email, Message: message }]);
+      .from("feedback") // table name must exactly match
+      .insert([{ Name, Email, Message }]);
 
     if (error) {
       alert("Error: " + error.message);
