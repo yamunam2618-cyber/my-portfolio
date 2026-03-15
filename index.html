@@ -149,32 +149,37 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
 <script>
   const SUPABASE_URL = "https://qkkcpryrutnrcuibckaq.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_55DfnVySZl03gUmgnKzhSA_uvR5HRdo";
-  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_KEY = "sb_publishable_55DfnVySZl03gUmgnKzhSA_uvR5HRdo";
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
 
-    const Name = document.getElementById("Name").value.trim();
-    const Email = document.getElementById("Email").value.trim();
-    const Message = document.getElementById("Message").value.trim(); // ✅ fixed typo
+  const Name = document.getElementById("Name").value.trim();
+  const Email = document.getElementById("Email").value.trim();
+  const Message = document.getElementById("Message").value.trim();
 
-    if (!Name || !Email || !Message) {
-      alert("Please fill in all fields");
-      return;
-    }
+  if (!Name || !Email || !Message) {
+    alert("Please fill in all fields");
+    return;
+  }
 
-    const { data, error } = await supabase
-      .from("feedback") // table name must exactly match
-      .insert([{ Name, Email, Message }]);
+  // Try to insert
+  const { data, error } = await supabase
+    .from("feedback")
+    .insert([{ Name, Email, Message }])
+    .select(); // <-- select() helps return inserted data
 
-    if (error) {
-      alert("Error: " + error.message);
-    } else {
-      alert("Feedback submitted successfully!");
-      this.reset();
-    }
-  });
+  console.log("Supabase response:", data, error);
+
+  if (error) {
+    alert("Error submitting feedback! Check console for details.");
+    console.error(error);
+  } else {
+    alert("Feedback submitted successfully!");
+    this.reset();
+  }
+});
 </script>
 
 </body>
