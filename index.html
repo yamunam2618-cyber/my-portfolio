@@ -296,6 +296,7 @@ learning web development and working on personal projects.
         <textarea id="message" placeholder="Your Feedback" rows="5" required></textarea>
         <button type="submit">Submit</button>
       </form>
+</div>
   </section>
 
   <footer>
@@ -313,7 +314,7 @@ const message = document.getElementById('message').value;
 
 try {
 
-const response = await fetch('http://localhost:3000/feedback', {
+const response = await fetch('http://localhost:3000/feedback') {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json'
