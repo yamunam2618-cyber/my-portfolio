@@ -136,9 +136,9 @@
   <h3>Send Me Feedback</h3>
   <div class="card contact-form">
     <form id="feedbackForm">
-      <input type="text" id="Name" placeholder="Your Name" required>
-      <input type="email" id="Email" placeholder="Your Email" required>
-      <textarea id="Message" placeholder="Your Feedback" rows="5" required></textarea>
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Feedback" rows="5" required></textarea>
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -146,38 +146,39 @@
 
 <footer>© 2026 Yamuna M</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
 <script>
-  const SUPABASE_URL = "https://qkkcpryrutnrcuibckaq.supabase.co";
-const SUPABASE_KEY = "sb_publishable_55DfnVySZl03gUmgnKzhSA_uvR5HRdo";
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
 document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
-  const Name = document.getElementById("Name").value.trim();
-  const Email = document.getElementById("Email").value.trim();
-  const Message = document.getElementById("Message").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
 
-  if (!Name || !Email || !Message) {
+  if (!name || !email || !message) {
     alert("Please fill in all fields");
     return;
   }
 
-  // Try to insert
-  const { data, error } = await supabase
-    .from("feedback")
-    .insert([{ Name, Email, Message }])
-    .select(); // <-- select() helps return inserted data
+  try {
+    const res = await fetch("http://localhost:5000/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, message })
+    });
 
-  console.log("Supabase response:", data, error);
+    if (!res.ok) {
+  throw new Error("Server error");
+}
 
-  if (error) {
-    alert("Error submitting feedback! Check console for details.");
-    console.error(error);
-  } else {
-    alert("Feedback submitted successfully!");
+const data = await res.json();
+alert(data.message);
     this.reset();
+
+  } catch (error) {
+    alert("Error connecting to server");
+    console.error(error);
   }
 });
 </script>
