@@ -2,183 +2,243 @@
 <html>
 <head>
   <title>Yamuna Portfolio</title>
+
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      color: white;
-      background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
-      scroll-behavior: smooth;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f, #ffdde1);
+      background-size: 300% 300%;
+      animation: glowBG 10s ease infinite;
+      color: #333;
     }
 
-    header { text-align: center; padding: 80px; }
-    header img { width: 150px; border-radius: 50%; border: 4px solid white; }
-    h1 { margin-top: 20px; }
+    @keyframes glowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-    .buttons a {
-      padding: 12px 25px;
-      margin: 10px;
-      background: rgba(56, 189, 248, 0.8);
-      color: black;
+    nav {
+      background: rgba(255,255,255,0.6);
+      padding: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+    }
+
+    nav a {
+      margin: 0 15px;
       text-decoration: none;
-      border-radius: 8px;
+      color: #333;
       font-weight: bold;
-      transition: 0.3s;
+      cursor: pointer;
     }
-    .buttons a:hover {
-      background: rgba(56, 189, 248, 1);
+
+    nav a:hover {
+      color: #ff6f91;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 15px 0;
+    }
+
+    .page {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: 0.5s;
+    }
+
+    .active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #ff9a9e;
       color: white;
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #38bdf8, 0 0 40px #0ea5e9;
+      cursor: pointer;
     }
 
-    .section { padding: 40px; max-width: 900px; margin: auto; }
-    .skills span { background: #38bdf8; color: black; padding: 8px 14px; margin: 5px; display: inline-block; border-radius: 6px; }
+    /* CERTIFICATES GRID */
+    .certificates {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-    .certificates { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .certificates img { width: 100%; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); transition: transform 0.4s, box-shadow 0.4s; }
-    .certificates img:hover { transform: scale(1.05); box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
+    .certificates img {
+      width: 100%;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
 
-    .contact a { display: block; color: white; margin: 10px 0; text-decoration: none; }
-    .container { max-width: 900px; margin: auto; padding: 40px; }
+    .certificates img:hover {
+      transform: scale(1.05);
+    }
 
-    .card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white; padding: 20px; border-radius: 15px; margin: 15px 0; box-shadow: 0 8px 32px rgba(0,0,0,0.3); transition: transform 0.3s; }
-    .card:hover { transform: scale(1.02); }
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+    }
 
-    .contact-form { max-width: 600px; margin: 50px auto; text-align: center; }
-    .contact-form form { display: flex; flex-direction: column; gap: 15px; }
-    .contact-form input, .contact-form textarea { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 14px; outline: none; }
-    .contact-form textarea { resize: none; }
-    .contact-form button { padding: 12px; border: none; border-radius: 8px; background: #38bdf8; font-weight: bold; cursor: pointer; transition: 0.3s; }
-    .contact-form button:hover { background: #0ea5e9; color: white; transform: scale(1.05); }
+    .modal img {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .modal span {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body>
 
-<header>
-  <img src="profile.jpg" alt="Profile Photo of Yamuna M">
-  <h1>Yamuna M</h1>
-  <p>Aspiring Tech Enthusiast | Learning Cloud & Web Development</p>
-  <div class="buttons">
-    <a href="#contact">Contact Me</a>
-    <a href="#certificates">View Certificates</a>
-  </div>
-</header>
+<nav>
+  <a onclick="showPage('home')">Home</a>
+  <a onclick="showPage('skills')">Skills</a>
+  <a onclick="showPage('certificates')">Certificates</a>
+  <a onclick="showPage('contact')">Contact</a>
+</nav>
 
-<section id="about" class="container">
-  <h2>About Me</h2>
+<!-- HOME -->
+<div id="home" class="container page active">
   <div class="card">
-    <p>
-      Hello! I am <b>Yamuna M</b>, a passionate student from Bangalore who is
-      interested in technology and continuously learning new skills in the
-      field of <b>Cloud Computing and Web Development</b>. I enjoy exploring
-      modern technologies and building simple projects to improve my technical
-      knowledge. I am currently focusing on developing my skills in HTML,
-      GitHub and cloud technologies while working towards building a strong
-      career in the tech industry.
-    </p>
+    <h1>Yamuna M</h1>
+    <p>Aspiring Tech Enthusiast | Cloud & Web Development</p>
   </div>
-</section>
+</div>
 
-<section id="education" class="container">
-  <h2>Education</h2>
+<!-- SKILLS -->
+<div id="skills" class="container page">
   <div class="card">
-    <p><b>Degree:</b> BCA in Cloud Computing</p>
-    <p><b>College:</b> Kristu Jayanti University</p>
-    <p><b>Location:</b> Bangalore, Karnataka, India</p>
-    <p>
-      Currently pursuing my undergraduate degree with a strong interest in
-      computer technology, programming and cloud computing. During my
-      academic journey I am also focusing on improving practical skills by
-      learning web development and working on personal projects.
-    </p>
+    <h2>Skills</h2>
+    <p>HTML, CSS, JavaScript, Python, GitHub, Cloud Computing</p>
   </div>
-</section>
 
-<div class="section">
-  <h2>Skills</h2>
-  <div class="card skills">
-    <span>HTML</span>
-    <span>GitHub</span>
-    <span>Cloud Computing</span>
-    <span>Python</span>
-    <span>CSS3</span>
-    <span>Javascript</span>
-    <span>Excel and PowerPoint</span>
-    <span>C and C++</span>
+  <div class="card">
+    <h2>Education</h2>
+    <p>BCA in Cloud Computing</p>
+    <p>Kristu Jayanti University</p>
   </div>
 </div>
 
-<div class="section" id="certificates">
-  <h2>Certificates</h2>
-  <div class="certificates">
-    <a href="Html_certificate2.jpeg" target="_blank"><img src="Html_certificate2.jpeg" alt="Html Certificate"></a>
-    <a href="Aws_certificate1.jpeg" target="_blank"><img src="Aws_certificate1.jpeg" alt="Aws Certificate"></a>
-    <a href="CSS_certificate3.jpeg" target="_blank"><img src="CSS_certificate3.jpeg" alt="CSS Certificate"></a>
-    <a href="Javascript_certificate4.jpeg" target="_blank"><img src="Javascript_certificate4.jpeg" alt="Javascript"></a>
-    <a href="Frontendweb_certificate5.jpeg" target="_blank"><img src="Frontendweb_certificate5.jpeg" alt="Frontendweb"></a>
-    <a href="NodesJs_certificate6.jpeg" target="_blank"><img src="NodesJs_certificate6.jpeg" alt="NodesJs"></a>
-    <a href="Gitandgithub_certificate7.jpeg" target="_blank"><img src="Gitandgithub_certificate7.jpeg" alt="Gitandgithub"></a>
+<!-- CERTIFICATES -->
+<div id="certificates" class="container page">
+  <div class="card">
+    <h2>Certificates</h2>
+
+    <div class="certificates">
+      <img src="Html_certificate2.jpeg" onclick="openModal(this.src)">
+      <img src="Aws_certificate1.jpeg" onclick="openModal(this.src)">
+      <img src="CSS_certificate3.jpeg" onclick="openModal(this.src)">
+      <img src="Javascript_certificate4.jpeg" onclick="openModal(this.src)">
+      <img src="Frontendweb_certificate5.jpeg" onclick="openModal(this.src)">
+      <img src="NodesJs_certificate6.jpeg" onclick="openModal(this.src)">
+      <img src="Gitandgithub_certificate7.jpeg" onclick="openModal(this.src)">
+    </div>
+
   </div>
 </div>
 
-<div class="section" id="contact">
-  <h2>Contact</h2>
-  <div class="contact">
-    <a href="mailto:yamuna.m2618@gmail.com">📧 Email</a>
-    <a href="https://linkedin.com/in/yamuna.m">LinkedIn</a>
-    <a href="https://github.com/yamuna2618-cyber">GitHub</a>
-  </div>
-</div>
+<!-- CONTACT -->
+<div id="contact" class="container page">
 
-<section id="feedback" class="container">
-  <h3>Send Me Feedback</h3>
-  <div class="card contact-form">
+  <div class="card">
+    <h2>Contact</h2>
+    <p>Email: yamuna.m2618@gmail.com</p>
+    <p>LinkedIn: linkedin.com/in/yamuna.m</p>
+    <p>GitHub: github.com/yamuna2618-cyber</p>
+  </div>
+
+  <div class="card">
+    <h2>Feedback</h2>
+
     <form id="feedbackForm">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" placeholder="Your Feedback" rows="5" required></textarea>
+      <input type="text" id="name" placeholder="Name" required><br><br>
+      <input type="email" id="email" placeholder="Email" required><br><br>
+      <textarea id="message" placeholder="Message" required></textarea><br><br>
       <button type="submit">Submit</button>
     </form>
-  </div>
-</section>
 
-<footer>© 2026 Yamuna M</footer>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div id="imageModal" class="modal">
+  <span onclick="closeModal()">&times;</span>
+  <img id="modalImg">
+</div>
 
 <script>
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  setTimeout(() => {
+    document.getElementById(pageId).classList.add('active');
+  }, 100);
+}
+
+function openModal(src) {
+  document.getElementById("imageModal").style.display = "block";
+  document.getElementById("modalImg").src = src;
+}
+
+function closeModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
+
 document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
-
-  if (!name || !email || !message) {
-    alert("Please fill in all fields");
-    return;
-  }
-
   try {
-    const res = await fetch("http://localhost:5000/feedback", {
+    await fetch("https://your-backend-url.onrender.com/feedback", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, message })
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        name: name.value,
+        email: email.value,
+        message: message.value
+      })
     });
 
-    if (!res.ok) {
-  throw new Error("Server error");
-}
-
-const data = await res.json();
-alert(data.message);
-    this.reset();
-
-  } catch (error) {
+    alert("Feedback sent!");
+  } catch {
     alert("Error connecting to server");
-    console.error(error);
   }
 });
 </script>
